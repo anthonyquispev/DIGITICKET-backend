@@ -1,29 +1,26 @@
 const alumnoCtrl = {}
-const { json } = require('express/lib/response')
-const { findByIdAndDelete } = require('../models/Alumno')
 const Alumno = require('../models/Alumno')
 
 // Mostrar alumnos
 alumnoCtrl.getAlumnos = async (req, res) => {
-    const alumnos = await Alumno.find()
-    res.json(alumnos)
+    try {
+        const alumnos = await Alumno.find()
+        return res.json({
+            ok: true,
+            alumnos
+        })
+    } catch (error) {
+        return res.json({
+            ok: false, message: error.message
+        })
+    }
 }
 
 // Registrar alumno
 alumnoCtrl.createAlumnos = async (req, res) => {
     const { codigo_universitario, password, apellido_paterno, apellido_materno, nombres, correo_institucional, correo_personal, telefono_personal, sede_preferencia, foto, logged_in } = req.body;
     const newAlumno = new Alumno({
-        codigo_universitario,
-        password,
-        apellido_paterno,
-        apellido_materno,
-        nombres,
-        correo_institucional,
-        correo_personal,
-        telefono_personal,
-        sede_preferencia,
-        foto,
-        logged_in
+        codigo_universitario, password, apellido_paterno, apellido_materno, nombres, correo_institucional, correo_personal, telefono_personal, sede_preferencia, foto, logged_in
     })
     await newAlumno.save((err, alumnoDB) => {
         if (err) {
@@ -48,7 +45,7 @@ alumnoCtrl.getAlumno = async (req, res) => {
                 ok: false, message: "Alumno no encontrado"
             })
         }
-        res.json({ ok: true, alumno})
+        res.json({ ok: true, alumno })
     } catch (error) {
         return res.status(500).json({ ok: false, message: error.message })
     }
@@ -91,48 +88,26 @@ alumnoCtrl.login = async (req, res) => {
 }
 
 // Actualizar alumno
-alumnoCtrl.updateAlumno = async (req,res) => {
-    const { codigo_universitario, password, apellido_paterno, apellido_materno, nombres, correo_institucional, correo_personal, telefono_personal, sede_preferencia, foto, logged_in } = req.body;
-    await Alumno.findByIdAndUpdate(req.params.id, {
-        codigo_universitario,
-        password,
-        apellido_paterno,
-        apellido_materno,
-        nombres,
-        correo_institucional,
-        correo_personal,
-        telefono_personal,
-        sede_preferencia,
-        foto,
-        logged_in,
-    });
-    res.json({message : 'Alumno actualizado'})
-}
-
-// Cambiar contraseña
-alumnoCtrl.changePasswordAlumno = async (req, res) => {
-    const { old_password, new_password } = req.body;
-    const alumno = await Alumno.findById(req.params.id);
-    if (old_password != alumno.password) {
-        return res.status(400).json({
-            ok: false,
-            err: {
-                message: "Contraseña actual incorrecta"
+alumnoCtrl.updateAlumno = async (req, res) => {
+    try {
+        const updatedAlumno = await Alumno.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            {
+                new: true
             }
+        )
+        if (!updatedAlumno) {
+            return res.json({ ok: false, message: "Alumno no encontrado" })
+        }
+        res.json({
+            ok: true, updatedAlumno
+        })
+    } catch (error) {
+        return res.json({
+            ok: false, message: error.message
         })
     }
-    const password = new_password
-    await Alumno.findByIdAndUpdate(req.params.id, {
-        password
-    })
-    res.json({
-        ok: true,
-        message: "Contraseña actualizada"
-    })
-}
-
-alumnoCtrl.activateAccount = async (req, res) => {
-    // Activación de cuenta
 }
 
 // Eliminar alumno
