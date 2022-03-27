@@ -22,6 +22,7 @@ alumnoCtrl.createAlumnos = async (req, res) => {
     const newAlumno = new Alumno({
         codigo_universitario, password, apellido_paterno, apellido_materno, nombres, correo_institucional, correo_personal, telefono_personal, sede_preferencia, foto, logged_in
     })
+    newAlumno.password = await newAlumno.encryptPassword(newAlumno.password)
     await newAlumno.save((err, alumnoDB) => {
         if (err) {
             return res.status(400).json({
@@ -54,7 +55,7 @@ alumnoCtrl.getAlumno = async (req, res) => {
 // Login
 alumnoCtrl.login = async (req, res) => {
     const { codigo_universitario, password } = req.body;
-    Alumno.find({ codigo_universitario: codigo_universitario }, (err, alumnoDB) => {
+    Alumno.find({ codigo_universitario: codigo_universitario }, async (err, alumnoDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -66,16 +67,17 @@ alumnoCtrl.login = async (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: "Código universitario o contraseña incorrectos"
+                    message: "Código universitario incorrecto"
                 }
             })
         }
         // Validación de contraseña
-        if (password != alumnoDB[0].password) {
+        const validPassword = await alumnoDB[0].validatePassword(password)
+        if (!validPassword) {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: "Código universitario o contraseña incorrectos"
+                    message: "Contraseña incorrecta"
                 }
             })
         }

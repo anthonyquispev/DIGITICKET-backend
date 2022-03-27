@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose')
+const bcrypt = require('bcryptjs')
 
 const alumnoSchema = new Schema({
     codigo_universitario: {
@@ -46,5 +47,14 @@ const alumnoSchema = new Schema({
         type: String
     }
 })
+
+alumnoSchema.methods.encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10)
+    return bcrypt.hash(password, salt)
+}
+
+alumnoSchema.methods.validatePassword = function (password) {
+    return bcrypt.compare(password, this.password)
+}
 
 module.exports = model('Alumnos', alumnoSchema)
