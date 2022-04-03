@@ -15,7 +15,7 @@ foodCtrl.getFoods = async (req, res) => {
     }
 }
 
-foodCtrl.createFoods = async (req, res) => {
+foodCtrl.createFood = async (req, res) => {
     const { name, category, service_type, nutritional_info } = req.body;
     const newFood = new Food({
         name, category, service_type, nutritional_info

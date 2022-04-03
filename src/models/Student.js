@@ -1,8 +1,8 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose')
 const bcrypt = require('bcryptjs')
 
-const alumnoSchema = new Schema({
-    codigo_universitario: {
+const studentSchema = new Schema({
+    university_code: {
         type: String,
         required: true,
         unique: true
@@ -11,24 +11,20 @@ const alumnoSchema = new Schema({
         type: String,
         required: true
     },
-    apellido_paterno: {
-        type:String,
-        required: true
-    },
-    apellido_materno: {
-        type:String,
-        required: true
-    },
-    nombres: {
+    last_name: {
         type: String,
         required: true
     },
-    correo_institucional: {
+    first_name: {
+        type: String,
+        required: true
+    },
+    institutional_mail: {
         type: String,
         required: true,
         unique: true
     },
-    foto: {
+    photo: {
         type: String,
         default: 'https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png'
     },
@@ -36,25 +32,25 @@ const alumnoSchema = new Schema({
         type: Boolean,
         default: false
     },
-    // Datos personales para activación de la cuenta
-    correo_personal: {
+    // Personal data for account activation
+    personal_mail: {
         type: String,
     },
-    telefono_personal: {
+    personal_phone: {
         type: String,
     },
-    sede_preferencia: {
+    preference_campus: {
         type: String
     }
 })
 
-alumnoSchema.methods.encryptPassword = async (password) => {
+studentSchema.methods.encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10)
     return bcrypt.hash(password, salt)
 }
 
-alumnoSchema.methods.validatePassword = function (password) {
+studentSchema.methods.validatePassword = function (password) {
     return bcrypt.compare(password, this.password)
 }
 
-module.exports = model('Alumnos', alumnoSchema)
+module.exports = model('Students', studentSchema)

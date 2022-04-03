@@ -1,11 +1,11 @@
 const {Router} = require('express')
 const router = Router()
 
-const {getFoods, createFoods, getFood, updateFood, deleteFood} = require('../controllers/foods.controller')
+const {getFoods, createFood, getFood, updateFood, deleteFood} = require('../controllers/foods.controller')
 
 router.route('/')
     .get(getFoods)
-    .post(createFoods)    
+    .post(createFood)
 router.route('/:id')
     .get(getFood)
     .put(updateFood)
