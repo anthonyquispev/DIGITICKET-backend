@@ -12,5 +12,6 @@ app.use(express.json())
 app.use('/api/administradores', require('./routes/administradores'))
 app.use('/api/students', require('./routes/students'))
 app.use('/api/foods', require('./routes/foods'))
+app.use('/api/turns', require('./routes/turns'))
 
 module.exports = app
