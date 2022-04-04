@@ -1,7 +1,7 @@
-const {Router} = require('express')
+const { Router } = require('express')
 const router = Router()
 
-const {getTurns, createTurn, getTurn, updateTurn, deleteTurn} = require('../controllers/turns.controller')
+const { getTurns, createTurn, getTurn, updateTurn, deleteTurn, reduceRations } = require('../controllers/turns.controller')
 
 router.route('/')
     .get(getTurns)
@@ -10,5 +10,7 @@ router.route('/:id')
     .get(getTurn)
     .put(updateTurn)
     .delete(deleteTurn)
+router.route('/reduceRations/:id')
+    .put(reduceRations)
 
 module.exports = router
