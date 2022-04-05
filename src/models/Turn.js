@@ -1,6 +1,14 @@
 const { Schema, model } = require('mongoose')
 
 const turnSchema = new Schema({
+    service_type: {
+        type: String,
+        required: true
+    },
+    turn_number: {
+        type: String,
+        required: true
+    },          
     schedule: {
         type: String,
         required: true

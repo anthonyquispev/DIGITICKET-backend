@@ -16,9 +16,9 @@ turnCtrl.getTurns = async (req, res) => {
 }
 
 turnCtrl.createTurn = async (req, res) => {
-    const { schedule, rations_available, entree_rations, second_rations, dessert_rations, drink_rations } = req.body;
+    const { service_type, turn_number, schedule, rations_available, entree_rations, second_rations, dessert_rations, drink_rations } = req.body;
     const newTurn = new Turn({
-        schedule, rations_available, entree_rations, second_rations, dessert_rations, drink_rations
+        service_type, turn_number, schedule, rations_available, entree_rations, second_rations, dessert_rations, drink_rations
     })
     await newTurn.save((err, turnDB) => {
         if (err) {

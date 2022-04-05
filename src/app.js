@@ -13,5 +13,6 @@ app.use('/api/administradores', require('./routes/administradores'))
 app.use('/api/students', require('./routes/students'))
 app.use('/api/foods', require('./routes/foods'))
 app.use('/api/turns', require('./routes/turns'))
+app.use('/api/tickets', require('./routes/tickets'))
 
 module.exports = app

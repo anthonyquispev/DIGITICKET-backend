@@ -6,10 +6,12 @@ const { getTurns, createTurn, getTurn, updateTurn, deleteTurn, reduceRations } =
 router.route('/')
     .get(getTurns)
     .post(createTurn)
+
 router.route('/:id')
     .get(getTurn)
     .put(updateTurn)
     .delete(deleteTurn)
+    
 router.route('/reduceRations/:id')
     .put(reduceRations)
 

@@ -5,11 +5,13 @@ const {getStudents, createStudent, getStudent, login, updateStudent, deleteStude
 
 router.route('/')
     .get(getStudents)
-    .post(createStudent)    
+    .post(createStudent)
+
 router.route('/:id')
     .get(getStudent)
     .put(updateStudent)
     .delete(deleteStudent)
+    
 router.route('/login')
     .post(login)
 
