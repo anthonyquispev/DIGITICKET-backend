@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const administradorSchema = new Schema({
+const administratorSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -10,22 +10,18 @@ const administradorSchema = new Schema({
         type: String,
         required: true
     },
-    apellido_paterno: {
+    last_name: {
         type:String,
         required: true
     },
-    apellido_materno: {
+    first_name: {
         type:String,
         required: true
     },
-    nombres: {
-        type: String,
-        required: true
-    },
-    permisos: {
+    permissions: {
         type: Array,
         required: true
     }
 })
 
-module.exports = model('Administradores', administradorSchema);
+module.exports = model('Administrators', administratorSchema);
