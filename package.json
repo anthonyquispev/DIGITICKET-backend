@@ -4,7 +4,7 @@
   "description": "Backend de la aplicación móvil DIGITICKET para el proyecto del curso Interfaz Hombre-Computador",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",

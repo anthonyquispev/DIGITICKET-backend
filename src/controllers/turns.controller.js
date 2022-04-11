@@ -93,6 +93,13 @@ turnCtrl.reduceRations = async (req, res) => {
             })
         }
         var { rations_available, entree_rations, second_rations, dessert_rations, drink_rations } = turn;
+        // Depleted rations
+        if (rations_available == '0') {
+            return res.json({
+                ok: false, rations: false, message: 'Out of rations'
+            })
+        }
+        ticket_number = rations_available
         const { entree, second, dessert, drink } = req.body;
         rations_available = (parseInt(rations_available) - 1).toString();
         if (entree) entree_rations = (parseInt(entree_rations) - 1).toString()
@@ -105,7 +112,7 @@ turnCtrl.reduceRations = async (req, res) => {
             new: true
         })
         res.json({
-            ok: true, updatedTurn
+            ok: true, ticket_number
         })
     } catch (error) {
         return res.status(500).json({ ok: false, message: error.message })
