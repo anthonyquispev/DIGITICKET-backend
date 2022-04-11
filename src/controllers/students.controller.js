@@ -16,9 +16,9 @@ studentCtrl.getStudents = async (req, res) => {
 }
 
 studentCtrl.createStudent = async (req, res) => {
-    const { university_code, password, last_name, first_name, institutional_mail, photo, logged_in, personal_mail, personal_phone, preference_campus } = req.body;
+    const { university_code, password, last_name, first_name, institutional_mail, photo, activated_account, logged_in, personal_mail, personal_phone, preference_campus } = req.body;
     const newStudent = new Student({
-        university_code, password, last_name, first_name, institutional_mail, photo, logged_in, personal_mail, personal_phone, preference_campus
+        university_code, password, last_name, first_name, institutional_mail, photo, activated_account, logged_in, personal_mail, personal_phone, preference_campus
     })
     newStudent.password = await newStudent.encryptPassword(newStudent.password)
     await newStudent.save((err, studentDB) => {
@@ -49,6 +49,24 @@ studentCtrl.getStudent = async (req, res) => {
     }
 }
 
+studentCtrl.validateActivation = async (req, res) => {
+    try {
+        const student = await Student.findOne({ university_code: { $eq: req.params.id } })        
+        if (!student) {
+            return res.json({
+                ok: false, message: "Student not found"
+            })
+        }
+        // Validation
+        if (student.activated_account)
+            res.json({ok: true, activated: true})
+        else
+            res.json({ok: true, activated: false})
+    } catch (error) {
+        return res.status(500).json({ ok: false, message: error.message })
+    }
+}
+
 // Login
 studentCtrl.login = async (req, res) => {
     const { university_code, password } = req.body;
@@ -74,20 +92,28 @@ studentCtrl.login = async (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: "Incorrect password"
-                }
+                    message: "Incorrect password",
+                },
+                correctPassword: false
             })
         }
         // Validated user
         res.json({
             ok: true,
-            studentDB
+            student: studentDB[0]
         })
     })
 }
 
 studentCtrl.updateStudent = async (req, res) => {
     try {
+        const { password } = req.body;
+        if (password) {
+            const studentPassword = new Student({
+                password
+            })
+            req.body.password = await studentPassword.encryptPassword(studentPassword.password)  
+        }
         const updatedStudent = await Student.findByIdAndUpdate(
             req.params.id,
             { $set: req.body },
@@ -99,7 +125,7 @@ studentCtrl.updateStudent = async (req, res) => {
             return res.json({ ok: false, message: "Student not found" })
         }
         res.json({
-            ok: true, updatedStudent
+            ok: true, student: updatedStudent
         })
     } catch (error) {
         return res.json({

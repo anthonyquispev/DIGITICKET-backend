@@ -1,6 +1,5 @@
 const app = require('./app')
 
-// Importando conección con la base de datos
 require('./database')
 
 function main() {

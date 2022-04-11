@@ -28,6 +28,10 @@ const studentSchema = new Schema({
         type: String,
         default: 'https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png'
     },
+    activated_account: {
+        type: Boolean,
+        default: false
+    },
     logged_in: {
         type: Boolean,
         default: false
