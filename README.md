@@ -153,7 +153,7 @@ curl -X POST http://localhost:4000/api/students -H 'Content-Type:application/jso
 ```
 
 <p align="center">
-  <img src="https://github.com/anthonyquispev/DIGITICKET-backend/blob/master/screenshots/bash_POST.PNG">
+  <img src="https://github.com/anthonyquispev/DIGITICKET-backend/blob/master/screenshots/Bash_POST.PNG">
 </p>
 
 ```bash
@@ -161,7 +161,7 @@ curl http://localhost:4000/api/foods
 ```
 
 <p align="center">
-  <img src="https://github.com/anthonyquispev/DIGITICKET-backend/blob/master/screenshots/bash_GET.PNG">
+  <img src="https://github.com/anthonyquispev/DIGITICKET-backend/blob/master/screenshots/Bash_GET.PNG">
 </p>
 
 ## Estructura
