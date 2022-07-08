@@ -1,0 +1,94 @@
+************************************************************
+************************* STUDENT **************************
+************************************************************
+{
+    "university_code": "18200501",
+    "password": "123456",
+    "last_name": "Pizarro",
+    "first_name": "Omar",
+    "institutional_mail": "omar.pizarro@unmsm.edu.pe"
+}
+{
+    "university_code": "18200502",
+    "password": "123456",
+    "last_name": "Trujillo",
+    "first_name": "Francisco",
+    "institutional_mail": "francisco.trujillo@unmsm.edu.pe"
+}
+************************************************************
+************************* FOOD *****************************
+************************************************************
+{
+    "name": "Caldo de pollo",
+    "category": "Entrada",
+    "service_type": ["Desayuno"],
+    "nutritional_info": {
+        "proteinas": "45.4",
+        "carbohidratos": "15.6",
+        "grasas": "15.5"
+    }
+}
+{
+    "name": "Locro",
+    "category": "Segundo",
+    "service_type": ["Almuerzo"],
+    "nutritional_info": {
+        "proteinas": "50.2",
+        "carbohidratos": "30.1",
+        "grasas": "15.2"
+    }
+}
+{
+    "name": "Lomo saltado",
+    "category": "Entrada",
+    "service_type": ["Almuerzo", "Cena"],
+    "nutritional_info": {
+        "proteinas": "20.2",
+        "carbohidratos": "30.1",
+        "grasas": "40.2"
+    }
+}
+************************************************************
+************************* TURN *****************************
+************************************************************
+{
+    "service_type": "Almuerzo",
+    "turn_number": "1",
+    "schedule": "12:00 - 12:20"
+}
+{
+    "service_type": "Almuerzo",
+    "turn_number": "2",
+    "schedule": "12:20 - 12:40"
+}
+{
+    "service_type": "Almuerzo",
+    "turn_number": "3",
+    "schedule": "12:40 - 13:00"
+}
+{
+    "service_type": "Almuerzo",
+    "turn_number": "4",
+    "schedule": "13:00 - 13:20"
+}
+{
+    "service_type": "Almuerzo",
+    "turn_number": "5",
+    "schedule": "13:20 - 13:40"
+}
+{
+    "service_type": "Cena",
+    "turn_number": "1",
+    "schedule": "17:00 - 17:20"
+}
+{
+    "service_type": "Cena",
+    "turn_number": "2",
+    "schedule": "17:20 - 17:40"
+}
+{
+    "service_type": "Cena",
+    "turn_number": "3",
+    "schedule": "17:40 - 18:00"
+}
+************************************************************

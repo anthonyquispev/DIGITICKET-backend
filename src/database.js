@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const URI = process.env.MONGODB_URI ? process.env.MONGODB_URI
-    : 'mongodb://localhost/digiticket'
+    : 'mongodb://localhost/digiticket_db'
 
 mongoose.connect(URI, {
     useNewUrlParser: true,
