@@ -4,7 +4,8 @@
   "description": "Backend de la aplicación móvil DIGITICKET para el proyecto del curso Interfaz Hombre-Computador",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
   }
 }
