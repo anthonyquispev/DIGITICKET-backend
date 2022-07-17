@@ -16,7 +16,11 @@
 ---
 
 ## Descripción
+
 **Backend de la aplicación móvil "DIGITICKET"**
+
+Repositorio del frontend: https://github.com/BrunoPorras/digiticket-ihc
+
 
 ## Modelos
 
@@ -147,6 +151,8 @@ Importamos el archivo [Backend-IHC.postman_collection.json](https://github.com/a
 ### BASH
 También podemos realizar peticiones a la API desde una consola Bash.
 
+#### POST
+
 ```bash
 curl -X POST http://localhost:4000/api/students -H 'Content-Type:application/json' -d "{\"university_code\":\"18200503\", \"password\":\"123456\", \
 "last_name\": \"Vilca\", \"first_name\": \"Jorge\", \"institutional_mail\": \"jorge.vilca@unmsm.edu.pe\"}"
@@ -155,6 +161,8 @@ curl -X POST http://localhost:4000/api/students -H 'Content-Type:application/jso
 <p align="center">
   <img src="https://github.com/anthonyquispev/DIGITICKET-backend/blob/master/screenshots/Bash_POST.PNG">
 </p>
+
+#### GET
 
 ```bash
 curl http://localhost:4000/api/foods
