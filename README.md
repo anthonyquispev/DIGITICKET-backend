@@ -213,6 +213,7 @@ curl http://localhost:4000/api/foods
 ## Profesor
 * Benavente Orellana, Edwin Hugo
 
+
 ## Integrantes
 * Chocce Alanya, Miguel Gerson
 * Porras Muñoz, Bruno Franchesco
